@@ -11,7 +11,7 @@ class AuthService {
       if (requestEmail) Scope.email,
       if (requestFullName) Scope.fullName,
     ];
-    final AuthorizationResult result = await AppleSignIn.performRequests(
+    final result = await AppleSignIn.performRequests(
         [AppleIdRequest(requestedScopes: scopes)]);
     switch (result.status) {
       case AuthorizationStatus.authorized:

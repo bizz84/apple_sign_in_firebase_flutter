@@ -8,25 +8,24 @@ void main() async {
   // Fix for: Unhandled Exception: ServicesBinding.defaultBinaryMessenger was accessed before the binding was initialized.
   WidgetsFlutterBinding.ensureInitialized();
   final appleSignInAvailable = await AppleSignInAvailable.check();
-  runApp(Provider<AppleSignInAvailable>(
-    create: (_) => appleSignInAvailable,
+  runApp(Provider<AppleSignInAvailable>.value(
+    value: appleSignInAvailable,
     child: MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Provider<AuthService>(
-        create: (_) => AuthService(),
-        child: SignInPage(),
+    return Provider<AuthService>(
+      create: (_) => AuthService(),
+      child: MaterialApp(
+        title: 'Apple Sign In with Firebase',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.indigo,
+        ),
+        home: SignInPage(),
       ),
     );
   }

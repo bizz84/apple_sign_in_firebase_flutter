@@ -8,7 +8,9 @@ class SignInPage extends StatelessWidget {
   Future<void> _signInWithApple(BuildContext context) async {
     try {
       final authService = Provider.of<AuthService>(context, listen: false);
-      await authService.signInWithApple();
+      final user = await authService.signInWithApple(
+          requestEmail: true, requestFullName: true);
+      print('uid: ${user.uid}');
     } catch (e) {
       // TODO: Show alert here
       print(e);
