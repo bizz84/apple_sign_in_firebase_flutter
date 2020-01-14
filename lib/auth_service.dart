@@ -6,8 +6,10 @@ class AuthService {
   final _firebaseAuth = FirebaseAuth.instance;
 
   Future<FirebaseUser> signInWithApple({List<Scope> scopes = const []}) async {
+    // 1. perform the sign-in request
     final result = await AppleSignIn.performRequests(
         [AppleIdRequest(requestedScopes: scopes)]);
+    // 2. check the result
     switch (result.status) {
       case AuthorizationStatus.authorized:
         final appleIdCredential = result.credential;
@@ -17,7 +19,6 @@ class AuthService {
           accessToken:
               String.fromCharCodes(appleIdCredential.authorizationCode),
         );
-
         final authResult = await _firebaseAuth.signInWithCredential(credential);
         final firebaseUser = authResult.user;
         if (scopes.contains(Scope.fullName)) {
