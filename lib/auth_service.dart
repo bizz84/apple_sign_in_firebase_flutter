@@ -5,12 +5,7 @@ import 'package:flutter/services.dart';
 class AuthService {
   final _firebaseAuth = FirebaseAuth.instance;
 
-  Future<FirebaseUser> signInWithApple(
-      {bool requestEmail = false, bool requestFullName = false}) async {
-    final scopes = [
-      if (requestEmail) Scope.email,
-      if (requestFullName) Scope.fullName,
-    ];
+  Future<FirebaseUser> signInWithApple({List<Scope> scopes = const []}) async {
     final result = await AppleSignIn.performRequests(
         [AppleIdRequest(requestedScopes: scopes)]);
     switch (result.status) {
@@ -25,7 +20,7 @@ class AuthService {
 
         final authResult = await _firebaseAuth.signInWithCredential(credential);
         final firebaseUser = authResult.user;
-        if (requestFullName) {
+        if (scopes.contains(Scope.fullName)) {
           final updateUser = UserUpdateInfo();
           updateUser.displayName =
               '${appleIdCredential.fullName.givenName} ${appleIdCredential.fullName.familyName}';
