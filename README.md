@@ -1,8 +1,12 @@
 # Apple Sign In with Firebase & Flutter
 
+![](media/apple-sign-in-banner.png)
+
 This is a demo app showing how to implement Apple Sign In with Firebase in a Flutter app.
 
-![](media/apple-sign-in-banner.png)
+## Full Tutorial Here
+
+- [Apple Sign In with Flutter & Firebase Authentication](https://codewithandrea.com/videos/2020-01-20-apple-sign-in-flutter-firebase/)
 
 ## Preview
 
