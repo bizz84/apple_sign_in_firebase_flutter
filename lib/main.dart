@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:apple_sign_in_firebase_flutter/apple_sign_in_available.dart';
 import 'package:apple_sign_in_firebase_flutter/auth_service.dart';
 import 'package:apple_sign_in_firebase_flutter/sign_in_page.dart';
@@ -7,6 +8,7 @@ import 'package:provider/provider.dart';
 void main() async {
   // Fix for: Unhandled Exception: ServicesBinding.defaultBinaryMessenger was accessed before the binding was initialized.
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   final appleSignInAvailable = await AppleSignInAvailable.check();
   runApp(Provider<AppleSignInAvailable>.value(
     value: appleSignInAvailable,
