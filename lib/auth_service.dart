@@ -38,7 +38,8 @@ class AuthService {
           code: 'ERROR_ABORTED_BY_USER',
           message: 'Sign in aborted by user',
         );
+      default:
+        throw UnimplementedError();
     }
-    return null;
   }
 }
