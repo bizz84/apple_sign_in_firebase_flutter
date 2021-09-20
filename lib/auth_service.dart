@@ -23,9 +23,13 @@ class AuthService {
             await _firebaseAuth.signInWithCredential(credential);
         final firebaseUser = userCredential.user!;
         if (scopes.contains(Scope.fullName)) {
-          final displayName =
-              '${appleIdCredential.fullName!.givenName} ${appleIdCredential.fullName!.familyName}';
-          await firebaseUser.updateDisplayName(displayName);
+          final fullName = appleIdCredential.fullName;
+          if (fullName != null &&
+              fullName.givenName != null &&
+              fullName.familyName != null) {
+            final displayName = '${fullName.givenName} ${fullName.familyName}';
+            await firebaseUser.updateDisplayName(displayName);
+          }
         }
         return firebaseUser;
       case AuthorizationStatus.error:
