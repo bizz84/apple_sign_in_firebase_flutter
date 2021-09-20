@@ -24,7 +24,7 @@ class AuthService {
         if (scopes.contains(Scope.fullName)) {
           final displayName =
               '${appleIdCredential.fullName.givenName} ${appleIdCredential.fullName.familyName}';
-          await firebaseUser.updateProfile(displayName: displayName);
+          await firebaseUser.updateDisplayName(displayName);
         }
         return firebaseUser;
       case AuthorizationStatus.error:
