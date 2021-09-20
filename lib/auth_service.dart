@@ -12,18 +12,19 @@ class AuthService {
     // 2. check the result
     switch (result.status) {
       case AuthorizationStatus.authorized:
-        final appleIdCredential = result.credential;
+        final appleIdCredential = result.credential!;
         final oAuthProvider = OAuthProvider('apple.com');
         final credential = oAuthProvider.credential(
-          idToken: String.fromCharCodes(appleIdCredential.identityToken),
+          idToken: String.fromCharCodes(appleIdCredential.identityToken!),
           accessToken:
-              String.fromCharCodes(appleIdCredential.authorizationCode),
+              String.fromCharCodes(appleIdCredential.authorizationCode!),
         );
-        final authResult = await _firebaseAuth.signInWithCredential(credential);
-        final firebaseUser = authResult.user;
+        final userCredential =
+            await _firebaseAuth.signInWithCredential(credential);
+        final firebaseUser = userCredential.user!;
         if (scopes.contains(Scope.fullName)) {
           final displayName =
-              '${appleIdCredential.fullName.givenName} ${appleIdCredential.fullName.familyName}';
+              '${appleIdCredential.fullName!.givenName} ${appleIdCredential.fullName!.familyName}';
           await firebaseUser.updateDisplayName(displayName);
         }
         return firebaseUser;
