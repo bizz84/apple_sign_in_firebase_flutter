@@ -19,7 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  apple_sign_in: ^0.1.0
+  the_apple_sign_in: ^1.1.1
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.18.3
   firebase_core: ^0.5.2

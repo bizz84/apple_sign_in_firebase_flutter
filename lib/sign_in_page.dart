@@ -1,8 +1,8 @@
-import 'package:apple_sign_in/apple_sign_in.dart';
 import 'package:apple_sign_in_firebase_flutter/apple_sign_in_available.dart';
 import 'package:apple_sign_in_firebase_flutter/auth_service.dart';
 import 'package:flutter/material.dart' hide ButtonStyle;
 import 'package:provider/provider.dart';
+import 'package:the_apple_sign_in/the_apple_sign_in.dart';
 
 class SignInPage extends StatelessWidget {
   Future<void> _signInWithApple(BuildContext context) async {
